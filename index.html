@@ -5,175 +5,190 @@
     <title>Medira</title>
     <link rel='stylesheet' href='css/treeview.css'>
     <link rel='stylesheet' href='css/style.css'>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="js/treebox.js"></script>
     <script src="js/formHandler.js"></script>
 </head>
 <body>
-<div id="wrapper">
-    <div id="form">
-        <div class="inputText">
-            <input type="text" name="inputText" id="inputText">
+<div class="wrapper">
+    <div id="form" class="container">
+        <div class="basicInput">
+            <label for="inputText"></label><input type="text" name="inputText" id="inputText"
+                                                  onkeypress="handleEnter(event)">
+
+            <div class="buttons">
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#categories">Categories
+                </button>
+                <button type="button" class="btn btn-info" onclick="formHandle()">Search</button>
+            </div>
         </div>
-        <ul class="treeview">
-            <li>
-                <input type="checkbox" name="ignore" id="Dxxx" checked>
-                <label for="Dxxx" class="custom-checked">[Dxxx] Diagnostic images</label>
-                <ul>
-                    <li>
-                        <input type="checkbox" name="ignore" id="DRxx" checked>
-                        <label for="DRxx" class="custom-checked">[DRxx] Radiology</label>
-                        <ul>
-                            <li>
-                                <input type="checkbox" name="DRUS" id="DRUS" checked>
-                                <label for="DRUS" class="custom-checked">[DRUS] Ultrasound</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="DRMR" id="DRMR" checked>
-                                <label for="DRMR" class="custom-checked">[DRMR] Magnetic Resonance</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="DRCT" id="DRCT" checked>
-                                <label for="DRCT" class="custom-checked">[DRCT] Computerized Tomography</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="DRXR" id="DRXR" checked>
-                                <label for="DRXR" class="custom-checked">[DRXR] X-Ray, 2D Radiography</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="DRAN" id="DRAN" checked>
-                                <label for="DRAN" class="custom-checked">[DRAN] Angiography</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="DRPE" id="DRPE" checked>
-                                <label for="DRPE" class="custom-checked">[DRPE] PET</label>
-                            </li>
-                            <li class="last">
-                                <input type="checkbox" name="DRCO" id="DRCO" checked>
-                                <label for="DRCO" class="custom-checked">[DRCO] Combined modalities in one image</label>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <input type="checkbox" name="ignore" id="DVxx" checked>
-                        <label for="DVxx" class="custom-checked">[DVxx] Visible light photography</label>
-                        <ul>
-                            <li>
-                                <input type="checkbox" name="DVDM" id="DVDM" checked>
-                                <label for="DVDM" class="custom-checked">[DVDM] Dermatology, skin </label>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="DVEN" id="DVEN" checked>
-                                <label for="DVEN" class="custom-checked">[DVEN] Endoscopy</label>
-                            </li>
-                            <li class="last">
-                                <input type="checkbox" name="DVOR" id="DVOR" checked>
-                                <label for="DVOR" class="custom-checked">[DVOR] Other organs</label>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <input type="checkbox" name="ignore" id="DSxx" checked>
-                        <label for="DSxx" class="custom-checked">[DSxx] Printed signals, waves</label>
-                        <ul>
-                            <li>
-                                <input type="checkbox" name="DSEE" id="DSEE" checked>
-                                <label for="DSEE" class="custom-checked">[DSEE] Electroencephalography</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="DSEC" id="DSEC" checked>
-                                <label for="DSEC" class="custom-checked">[DSEC] Electrocardiography</label>
-                            </li>
-                            <li class="last">
-                                <input type="checkbox" name="DSEM" id="DSEM" checked>
-                                <label for="DSEM" class="custom-checked">[DSEM]Electromyography</label>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <input type="checkbox" name="ignore" id="DMxx" checked>
-                        <label for="DMxx" class="custom-checked">[DMxx] Microscopy</label>
-                        <ul>
-                            <li>
-                                <input type="checkbox" name="DMLI" id="DMLI" checked>
-                                <label for="DMLI" class="custom-checked">[DMLI] Light microscopy</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="DMEL" id="DMEL" checked>
-                                <label for="DMEL" class="custom-checked">[DMEL] Electron microscopy</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="DMTR" id="DMTR" checked>
-                                <label for="DMTR" class="custom-checked">[DMTR] Transmission microscopy</label>
-                            </li>
-                            <li class="last">
-                                <input type="checkbox" name="DMFL" id="DMFL" checked>
-                                <label for="DMFL" class="custom-checked">[DMFL] Fluorescence microscopy</label>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="last">
-                        <input type="checkbox" name="D3DR" id="D3DR" checked>
-                        <label for="D3DR" class="custom-checked">[D3DR] 3D reconstructions</label>
-                    </li>
-                </ul>
-            </li>
-            <li class="last">
-                <input type="checkbox" name="ignore" id="Gxxx" checked>
-                <label for="Gxxx" class="custom-checked">[Gxxx] Generic biomedical illustrations</label>
-                <ul>
-                    <li>
-                        <input type="checkbox" name="GTAB" id="GTAB" checked>
-                        <label for="GTAB" class="custom-checked">[GTAB] Tables and forms</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" name="GPLI" id="GPLI" checked>
-                        <label for="GPLI" class="custom-checked">[GPLI] Program listing</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" name="GFIG" id="GFIG" checked>
-                        <label for="GFIG" class="custom-checked">[GFIG] Statistical figures, graphs, charts</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" name="GSCR" id="GSCR" checked>
-                        <label for="GSCR" class="custom-checked">[GSCR] Screenshots</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" name="GFLO" id="GFLO" checked>
-                        <label for="GFLO" class="custom-checked">[GFLO] Flowcharts</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" name="GSYS" id="GSYS" checked>
-                        <label for="GSYS" class="custom-checked">[GSYS] System overviews</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" name="GGEN" id="GGEN" checked>
-                        <label for="GGEN" class="custom-checked">[GGEN] Gene sequence</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" name="GGEL" id="GGEL" checked>
-                        <label for="GGEL" class="custom-checked">[GGEL] Chromatography, Gel</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" name="GCHE" id="GCHE" checked>
-                        <label for="GCHE" class="custom-checked">[GCHE] Chemical structure</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" name="GMAT" id="GMAT" checked>
-                        <label for="GMAT" class="custom-checked">[GMAT] Mathematics, formulae</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" name="GNCP" id="GNCP" checked>
-                        <label for="GNCP" class="custom-checked">[GNCP] Non-clinical photos</label>
-                    </li>
-                    <li class="last">
-                        <input type="checkbox" name="GHDR" id="GHDR" checked>
-                        <label for="GHDR" class="custom-checked">[GHDR] Hand-drawn sketches</label>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <input type="button" name="button" value="Search" onclick="formHandle()">
+        <div id="categories" class="collapse in">
+            <ul class="treeview">
+                <li>
+                    <input type="checkbox" name="ignore" id="Dxxx" checked>
+                    <label for="Dxxx" class="custom-checked">[Dxxx] Diagnostic images</label>
+                    <ul>
+                        <li>
+                            <input type="checkbox" name="ignore" id="DRxx" checked>
+                            <label for="DRxx" class="custom-checked">[DRxx] Radiology</label>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" name="DRUS" id="DRUS" checked>
+                                    <label for="DRUS" class="custom-checked">[DRUS] Ultrasound</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="DRMR" id="DRMR" checked>
+                                    <label for="DRMR" class="custom-checked">[DRMR] Magnetic Resonance</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="DRCT" id="DRCT" checked>
+                                    <label for="DRCT" class="custom-checked">[DRCT] Computerized Tomography</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="DRXR" id="DRXR" checked>
+                                    <label for="DRXR" class="custom-checked">[DRXR] X-Ray, 2D Radiography</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="DRAN" id="DRAN" checked>
+                                    <label for="DRAN" class="custom-checked">[DRAN] Angiography</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="DRPE" id="DRPE" checked>
+                                    <label for="DRPE" class="custom-checked">[DRPE] PET</label>
+                                </li>
+                                <li class="last">
+                                    <input type="checkbox" name="DRCO" id="DRCO" checked>
+                                    <label for="DRCO" class="custom-checked">[DRCO] Combined modalities in one
+                                        image</label>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="ignore" id="DVxx" checked>
+                            <label for="DVxx" class="custom-checked">[DVxx] Visible light photography</label>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" name="DVDM" id="DVDM" checked>
+                                    <label for="DVDM" class="custom-checked">[DVDM] Dermatology, skin </label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="DVEN" id="DVEN" checked>
+                                    <label for="DVEN" class="custom-checked">[DVEN] Endoscopy</label>
+                                </li>
+                                <li class="last">
+                                    <input type="checkbox" name="DVOR" id="DVOR" checked>
+                                    <label for="DVOR" class="custom-checked">[DVOR] Other organs</label>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="ignore" id="DSxx" checked>
+                            <label for="DSxx" class="custom-checked">[DSxx] Printed signals, waves</label>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" name="DSEE" id="DSEE" checked>
+                                    <label for="DSEE" class="custom-checked">[DSEE] Electroencephalography</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="DSEC" id="DSEC" checked>
+                                    <label for="DSEC" class="custom-checked">[DSEC] Electrocardiography</label>
+                                </li>
+                                <li class="last">
+                                    <input type="checkbox" name="DSEM" id="DSEM" checked>
+                                    <label for="DSEM" class="custom-checked">[DSEM]Electromyography</label>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="ignore" id="DMxx" checked>
+                            <label for="DMxx" class="custom-checked">[DMxx] Microscopy</label>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" name="DMLI" id="DMLI" checked>
+                                    <label for="DMLI" class="custom-checked">[DMLI] Light microscopy</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="DMEL" id="DMEL" checked>
+                                    <label for="DMEL" class="custom-checked">[DMEL] Electron microscopy</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="DMTR" id="DMTR" checked>
+                                    <label for="DMTR" class="custom-checked">[DMTR] Transmission microscopy</label>
+                                </li>
+                                <li class="last">
+                                    <input type="checkbox" name="DMFL" id="DMFL" checked>
+                                    <label for="DMFL" class="custom-checked">[DMFL] Fluorescence microscopy</label>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="last">
+                            <input type="checkbox" name="D3DR" id="D3DR" checked>
+                            <label for="D3DR" class="custom-checked">[D3DR] 3D reconstructions</label>
+                        </li>
+                    </ul>
+                </li>
+                <li class="last">
+                    <input type="checkbox" name="ignore" id="Gxxx" checked>
+                    <label for="Gxxx" class="custom-checked">[Gxxx] Generic biomedical illustrations</label>
+                    <ul>
+                        <li>
+                            <input type="checkbox" name="GTAB" id="GTAB" checked>
+                            <label for="GTAB" class="custom-checked">[GTAB] Tables and forms</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="GPLI" id="GPLI" checked>
+                            <label for="GPLI" class="custom-checked">[GPLI] Program listing</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="GFIG" id="GFIG" checked>
+                            <label for="GFIG" class="custom-checked">[GFIG] Statistical figures, graphs, charts</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="GSCR" id="GSCR" checked>
+                            <label for="GSCR" class="custom-checked">[GSCR] Screenshots</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="GFLO" id="GFLO" checked>
+                            <label for="GFLO" class="custom-checked">[GFLO] Flowcharts</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="GSYS" id="GSYS" checked>
+                            <label for="GSYS" class="custom-checked">[GSYS] System overviews</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="GGEN" id="GGEN" checked>
+                            <label for="GGEN" class="custom-checked">[GGEN] Gene sequence</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="GGEL" id="GGEL" checked>
+                            <label for="GGEL" class="custom-checked">[GGEL] Chromatography, Gel</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="GCHE" id="GCHE" checked>
+                            <label for="GCHE" class="custom-checked">[GCHE] Chemical structure</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="GMAT" id="GMAT" checked>
+                            <label for="GMAT" class="custom-checked">[GMAT] Mathematics, formulae</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="GNCP" id="GNCP" checked>
+                            <label for="GNCP" class="custom-checked">[GNCP] Non-clinical photos</label>
+                        </li>
+                        <li class="last">
+                            <input type="checkbox" name="GHDR" id="GHDR" checked>
+                            <label for="GHDR" class="custom-checked">[GHDR] Hand-drawn sketches</label>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="results" class="results">
+
+        </div>
+
     </div>
 </div>
 

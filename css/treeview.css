@@ -17,7 +17,7 @@ ul {
 }
 
 .treeview li {
-    background: url(http://jquery.bassistance.de/treeview/images/treeview-default-line.gif) 0 0 no-repeat;
+    /*background: url(http://jquery.bassistance.de/treeview/images/treeview-default-line.gif) 0 0 no-repeat;*/
     padding: 2px 0 2px 16px;
 }
 
@@ -41,7 +41,7 @@ ul {
 }
 
 .treeview li > label {
-    background: url(http://www.thecssninja.com/demo/css_custom-forms/gr_custom-inputs.png) 0 -1px no-repeat;
+    background: url(../res/bl_custom-inputs.png) 0 -1px no-repeat;
     /* move left to cover the original checkbox area */
     margin-left: -20px;
     /* pad the text to make room for image */

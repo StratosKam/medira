@@ -1,0 +1,23 @@
+.wrapper{
+    width: 500px;
+    margin: 0 auto;
+}
+
+.basicInput{
+    width:500px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.basicInput input{
+    margin-top: 6px;
+    width: 60%;
+}
+
+.buttons{
+    float: right;
+}
+
+.results img{
+    max-width: 500px;
+}
