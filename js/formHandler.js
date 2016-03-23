@@ -23,9 +23,9 @@ function handleLoad(){
     if(params==""){
         $('#form').find('input:checkbox').prop("checked", true).next('label').removeClass("custom-unchecked").addClass("custom-checked");
     }else{
-        populateForm(params);
         document.getElementById("categories").className = "collapse";
-    //    TODO backend query
+        populateForm(params);
+        query(params);
     }
 
 }
@@ -46,25 +46,9 @@ function populateForm(params){
     }
 }
 
-function formHandle() {
-    var text = $('#inputText').val();
-    var selected = [];
-    $('#form').find('input:checked').each(function () {
-        selected.push($(this).attr('name'));
-    });
-    var categories = "";
-    var i;
-    for (i = 0; i < selected.length; ++i) {
-        if (selected[i] != "ignore") {
-            categories = categories + "&" + selected[i] + ":1";
-        }
-    }
-    query("?q=caption:*" + text + "*" + categories);
-    //TODO create correct url
-}
-
-function query(url) {
+function query(allParams) {
     demo();
+    //TODO create proper url
     //var xmlhttp;
     //if (window.XMLHttpRequest) {
     //    xmlhttp = new XMLHttpRequest();
@@ -83,6 +67,14 @@ function query(url) {
 }
 
 function demo() {
-    document.getElementById("categories").className = "collapse";
-    document.getElementById("results").innerHTML = "<a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a>";
+    document.getElementById("results").innerHTML =
+        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>" +
+        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>" +
+        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>" +
+        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>" +
+        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>" +
+        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>" +
+        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>" +
+        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>";
+
 }

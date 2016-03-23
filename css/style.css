@@ -18,6 +18,33 @@
     float: right;
 }
 
-.results img{
-    max-width: 500px;
+.results{
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.result{
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+
+    max-width: 300px;
+    /*width: 250px;*/
+    max-height: 310px;
+    margin: 5px 5px 25px 5px;
+}
+
+.result h1{
+    font-size: 12px;
+    font-weight: bold;
+    display: inline;
+}
+
+.result p{
+    font-size:9px;
+}
+.result img{
+    width:300px;
 }
