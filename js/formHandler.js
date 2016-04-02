@@ -6,6 +6,9 @@ function handleEnter(event) {
 }
 
 function setGET() {
+    if(!$('#inputText').val()){
+        return;
+    }
     var params = "?q=" + encodeURIComponent($('#inputText').val());
     $('#form').find('input:checked').each(function () {
         params = params + "&" + $(this).attr('name') + "=1";
@@ -25,9 +28,8 @@ function handleLoad() {
     } else {
         document.getElementById("categories").className = "collapse";
         populateForm(params);
-        query(params);
+        handleQueries(params[0].split("=")[1],getMinimal(params),1027);
     }
-
 }
 
 function populateForm(params) {
@@ -46,35 +48,55 @@ function populateForm(params) {
     }
 }
 
-function query(allParams) {
-    demo();
-    //TODO create proper url
-    //var xmlhttp;
-    //if (window.XMLHttpRequest) {
-    //    xmlhttp = new XMLHttpRequest();
-    //} else {
-    //    // code for older browsers
-    //    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    //}
-    //xmlhttp.onreadystatechange = function () {
-    //    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-    ////TODO handle response
-    //        document.getElementById("results").innerHTML = xmlhttp.responseText;
-    //    }
-    //};
-    //xmlhttp.open("GET", url, true);
-    //xmlhttp.send();
+function handleQueries(text,categories,limit){
+    var i;
+    for(i=0;i<categories.length;i++){
+        singleQuery(text,categories[i].split("=")[0],limit);
+    }
 }
 
-function demo() {
-    document.getElementById("results").innerHTML =
-        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>" +
-        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>" +
-        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>" +
-        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>" +
-        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>" +
-        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>" +
-        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>" +
-        "<div class=\"result\"><h1>GFIG</h1><a href=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017\"> <img src=\"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861017/bin/1297-9686-42-10-3.jpg\" alt=\"Accuracy of QTL-EBV and total EBV as a...\"></a><p>Accuracy of QTL-EBV and total EBV as a...</p></div>";
-
+function singleQuery(text,category,limit){
+    var outer='<div id="r'+category+'" class="catResults"></div>';
+    document.getElementById("results").innerHTML=document.getElementById("results").innerHTML+outer;
+    $.getJSON(getUrl(text,category,limit), function(result){
+        var div=$('#results > #r'+category);
+        if(result.response.docs.length==0){
+            div.remove();
+        }else{
+            $('#toc').append('<a href="#r'+category+'">'+category+' - '+result.response.docs.length +' found'+'</a>');
+            div.append('<a name=r"'+category+'"></a><h1>'+category+'</h1>');
+            for (var i = 0; i < result.response.docs.length; i++) {
+                div.append(getResultDiv(result.response.docs[i].articleURL,result.response.docs[i].imgURL,result.response.docs[i].caption));
+            }
+        }
+    });
 }
+
+function getUrl(text,category,limit){
+    return 'http://snf-700467.vm.okeanos.grnet.gr:8983/solr/medira_test/select/?q=*'+text+'*%20AND%20categories.'+category+':1&rows='+limit+'&wt=json&json.wrf=?';
+}
+
+function getResultDiv(url,img,caption){
+    return '<div class=\"result\"><a href=\"'+url+'\"><img src=\"'+img+'\"title=\"'+caption+'\" alt=\"'+caption+'\"></a></div>';
+}
+
+function getValidated(allParams){
+    var i;
+    var validated=[];
+    for(i=0;i<allParams;i++){
+
+    }
+}
+
+function getMinimal(allParams){
+    var minimal=[];
+    var i;
+    for (i = 1; i < allParams.length; ++i) {
+        var param = allParams[i].split("=");
+        if (!(/[a-z]/.test(param[0]))) {
+            minimal.push(allParams[i])
+        }
+    }
+    return minimal;
+}
+

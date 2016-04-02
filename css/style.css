@@ -19,10 +19,27 @@
 }
 
 .results{
+
+}
+
+.catResults{
     width: 100%;
     display: inline-block;
     text-align: center;
     margin: 0 auto;
+}
+
+.catResults h1{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.catResults h2{
+    font-size: 9px;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .result{
@@ -30,21 +47,26 @@
     display: inline-block;
     vertical-align: top;
 
-    max-width: 300px;
-    /*width: 250px;*/
-    max-height: 310px;
     margin: 5px 5px 25px 5px;
-}
-
-.result h1{
-    font-size: 12px;
-    font-weight: bold;
-    display: inline;
 }
 
 .result p{
     font-size:9px;
+    display:block;
 }
 .result img{
     width:300px;
+    height: 300px;
+}
+.toc{
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+}
+.toc a{
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
 }
