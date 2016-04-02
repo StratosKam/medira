@@ -23,6 +23,7 @@ function setGET() {
 
 function handleLoad() {
     var params = window.location.search.substring(1).split("&");
+    params=getValidated(params);
     if (params == "") {
         $('#form').find('input:checkbox').prop("checked", true).next('label').removeClass("custom-unchecked").addClass("custom-checked");
     } else {
@@ -81,11 +82,15 @@ function getResultDiv(url,img,caption){
 }
 
 function getValidated(allParams){
-    var i;
     var validated=[];
-    for(i=0;i<allParams;i++){
-
+    var accepted=["q","DRUS","DRMR","DRCT","DRXR","DRAN","DRPE","DRCO","DVDM","DVEN","DVOR","DSEE","DSEC","DSEM","DMLI","DMEL","DMTR","DMFL","D3DR","GTAB","GPLI","GFIG","GSCR","GFLO","GSYS","GGEN","GGEL","GCHE","GMAT","GNCP","GHPR","Dxxx","DRxx","DVxx","DMxx","Gxxx"];
+    var i;
+    for(i=0;i<allParams.length;++i){
+        if(accepted.indexOf(allParams[i].split("=")[0])>-1){
+            validated.push(allParams[i]);
+        }
     }
+    return validated;
 }
 
 function getMinimal(allParams){
