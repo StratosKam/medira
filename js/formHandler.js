@@ -29,7 +29,7 @@ function handleLoad() {
     } else {
         document.getElementById("categories").className = "collapse";
         populateForm(params);
-        handleQueries(params[0].split("=")[1],getMinimal(params),1027);
+        handleQueries(params[0].split("=")[1],getMinimal(params),1029);
     }
 }
 
