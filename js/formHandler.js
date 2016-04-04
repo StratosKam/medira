@@ -80,7 +80,7 @@ function getMergedCategories(categories){
 }
 
 function getResultDiv(url,img,caption){
-    return '<div class=\"result\"><a href=\"'+url+'\"><img src=\"'+img+'\"title=\"'+caption+'\" alt=\"'+caption+'\"></a></div>';
+    return '<div class=\"result\"><a href=\"'+url+'\"><img src=\"'+img+'\" title="Go to the article" alt=\"'+caption+'\"></a><p>'+caption+'</p></div>';
 }
 
 function getValidated(allParams){
