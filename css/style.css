@@ -4,14 +4,12 @@
 }
 
 .basicInput{
-    /*width:500px;*/
-    overflow: hidden;
     margin-top: 10px;
 }
 
 .basicInput input{
-    /*margin-top: 6px;*/
-    width: 450px;
+    margin: 0 auto;
+    width: 90%;
 }
 
 .categories{
@@ -19,7 +17,7 @@
     float:left;
     min-width: 350px;
     width:350px;
-    font-size: 12px;
+    /*font-size: 12px;*/
     height:100vh;
     overflow:auto;
     position: fixed;
