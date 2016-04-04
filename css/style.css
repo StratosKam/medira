@@ -4,22 +4,38 @@
 }
 
 .basicInput{
-    width:500px;
+    /*width:500px;*/
     overflow: hidden;
     margin-top: 10px;
 }
 
 .basicInput input{
-    margin-top: 6px;
-    width: 60%;
+    /*margin-top: 6px;*/
+    width: 450px;
 }
+
+.categories{
+    margin: 0 0 0 0;
+    float:left;
+    min-width: 350px;
+    width:350px;
+    font-size: 12px;
+    height:100vh;
+    overflow:auto;
+    position: fixed;
+    top: 20px;
+    bottom: 0;
+}
+
 
 .buttons{
     float: right;
 }
 
 .results{
-
+    float:right;
+    padding-left: 360px;
+    /*width:70%;*/
 }
 
 .catResults{

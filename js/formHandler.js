@@ -10,7 +10,7 @@ function setGET() {
         return;
     }
     var params = "?q=" + encodeURIComponent($('#inputText').val());
-    $('#form').find('input:checked').each(function () {
+    $('#categories').find('input:checked').each(function () {
         params = params + "&" + $(this).attr('name') + "=1";
     });
     $(".custom-indeterminate").each(function () {
@@ -25,9 +25,10 @@ function handleLoad() {
     var params = window.location.search.substring(1).split("&");
     params=getValidated(params);
     if (params == "") {
-        $('#form').find('input:checkbox').prop("checked", true).next('label').removeClass("custom-unchecked").addClass("custom-checked");
+        $('#categories').find('input:checkbox').prop("checked", true).next('label').removeClass("custom-unchecked").addClass("custom-checked");
     } else {
-        document.getElementById("categories").className = "collapse";
+        $('#categories').attr("class","categories");
+        //document.getElementById("categories").className = "collapse";
         populateForm(params);
         query(params[0].split("=")[1],getMinimal(params),1029);
     }
@@ -84,7 +85,7 @@ function getResultDiv(url,img,caption){
 
 function getValidated(allParams){
     var validated=[];
-    var accepted=["q","DRUS","DRMR","DRCT","DRXR","DRAN","DRPE","DRCO","DVDM","DVEN","DVOR","DSEE","DSEC","DSEM","DMLI","DMEL","DMTR","DMFL","D3DR","GTAB","GPLI","GFIG","GSCR","GFLO","GSYS","GGEN","GGEL","GCHE","GMAT","GNCP","GHPR","Dxxx","DRxx","DVxx","DMxx","Gxxx"];
+    var accepted=["q","DRUS","DRMR","DRCT","DRXR","DRAN","DRPE","DRCO","DVDM","DVEN","DVOR","DSEE","DSEC","DSEM","DMLI","DMEL","DMTR","DMFL","D3DR","GTAB","GPLI","GFIG","GSCR","GFLO","GSYS","GGEN","GGEL","GCHE","GMAT","GNCP","GHPR","Dxxx","DRxx","DVxx","DMxx","DSxx","Gxxx"];
     var i;
     for(i=0;i<allParams.length;++i){
         if(accepted.indexOf(allParams[i].split("=")[0])>-1){
