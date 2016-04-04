@@ -29,7 +29,7 @@ function handleLoad() {
     } else {
         document.getElementById("categories").className = "collapse";
         populateForm(params);
-        handleQueries(params[0].split("=")[1],getMinimal(params),1029);
+        query(params[0].split("=")[1],getMinimal(params),1029);
     }
 }
 
@@ -49,23 +49,15 @@ function populateForm(params) {
     }
 }
 
-function handleQueries(text,categories,limit){
-    var i;
-    for(i=0;i<categories.length;i++){
-        singleQuery(text,categories[i].split("=")[0],limit);
+function query(text,categories,limit){
+    if(categories.length==0){
+        return;
     }
-}
-
-function singleQuery(text,category,limit){
-    var outer='<div id="r'+category+'" class="catResults"></div>';
-    document.getElementById("results").innerHTML=document.getElementById("results").innerHTML+outer;
-    $.getJSON(getUrl(text,category,limit), function(result){
-        var div=$('#results > #r'+category);
+    $.getJSON(getUrl(text,categories,limit), function(result){
+        var div=$('#results');
         if(result.response.docs.length==0){
-            div.remove();
+            div.append('<h1>No images found</h1>');
         }else{
-            $('#toc').append('<a href="#r'+category+'">'+category+' - '+result.response.docs.length +' found'+'</a>');
-            div.append('<a name=r"'+category+'"></a><h1>'+category+'</h1>');
             for (var i = 0; i < result.response.docs.length; i++) {
                 div.append(getResultDiv(result.response.docs[i].articleURL,result.response.docs[i].imgURL,result.response.docs[i].caption));
             }
@@ -73,8 +65,17 @@ function singleQuery(text,category,limit){
     });
 }
 
-function getUrl(text,category,limit){
-    return 'http://snf-700467.vm.okeanos.grnet.gr:8983/solr/medira_test/select/?q=*'+text+'*%20AND%20categories.'+category+':1&rows='+limit+'&wt=json&json.wrf=?';
+function getUrl(text,categories,limit){
+    return 'http://snf-700467.vm.okeanos.grnet.gr:8983/solr/medira_test/select/?q=*'+text+'*%20AND('+getMergedCategories(categories)+')&rows='+limit+'&wt=json&json.wrf=?';
+}
+
+function getMergedCategories(categories){
+    var merged='categories.' + categories[0].split('=')[0]+':1';
+    var i;
+    for(i=1;i<categories.length;++i){
+        merged=merged + '%20OR%20categories.' + categories[i].split('=')[0]+':1';
+    }
+    return merged;
 }
 
 function getResultDiv(url,img,caption){
