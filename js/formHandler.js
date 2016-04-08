@@ -55,7 +55,8 @@ function query(text,categories,limit){
         return;
     }
     $.getJSON(getUrl(text,categories,limit), function(result){
-        var div=$('#results');
+        var div=$('<div></div>').attr('id', 'results').attr('class','results');
+        div.appendTo('body');
         if(result.response.docs.length==0){
             div.append('<h1>No images found</h1>');
         }else{
@@ -106,4 +107,3 @@ function getMinimal(allParams){
     }
     return minimal;
 }
-
