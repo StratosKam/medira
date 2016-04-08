@@ -18,6 +18,7 @@ $(function () {
             .addClass(checked ? 'custom-checked' : 'custom-unchecked');
 
         checkSiblings(container, checked);
+        handleCheckboxChange();
     }
 
     function checkSiblings($el, checked) {

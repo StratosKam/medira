@@ -1,24 +1,9 @@
 function handleEnter(event) {
     if (event.keyCode === 13) {
-        setGET();
+        setGET(1);
+        startQuery();
     }
     return false;
-}
-
-function setGET() {
-    if(!$('#inputText').val()){
-        return;
-    }
-    var params = "?q=" + encodeURIComponent($('#inputText').val());
-    $('#categories').find('input:checked').each(function () {
-        params = params + "&" + $(this).attr('name') + "=1";
-    });
-    $(".custom-indeterminate").each(function () {
-        params = params + "&" + $(this).attr('for') + "=0";
-    });
-    if (!location.origin)
-        location.origin = location.protocol + "//" + location.host;
-    window.location = location.protocol + '//' + location.host + location.pathname + params;
 }
 
 function handleLoad() {
@@ -28,9 +13,8 @@ function handleLoad() {
         $('#categories').find('input:checkbox').prop("checked", true).next('label').removeClass("custom-unchecked").addClass("custom-checked");
     } else {
         $('#categories').attr("class","categories");
-        //document.getElementById("categories").className = "collapse";
         populateForm(params);
-        query(params[0].split("=")[1],getMinimal(params),1029);
+        startQuery();
     }
 }
 
@@ -50,38 +34,18 @@ function populateForm(params) {
     }
 }
 
-function query(text,categories,limit){
-    if(categories.length==0){
-        return;
-    }
-    $.getJSON(getUrl(text,categories,limit), function(result){
-        var div=$('<div></div>').attr('id', 'results').attr('class','results');
-        div.appendTo('body');
-        if(result.response.docs.length==0){
-            div.append('<h1>No images found</h1>');
-        }else{
-            for (var i = 0; i < result.response.docs.length; i++) {
-                div.append(getResultDiv(result.response.docs[i].articleURL,result.response.docs[i].imgURL,result.response.docs[i].caption));
-            }
+function getQueryInputURI(){
+    return encodeURIComponent($('#inputText').val());
+}
+
+function getCategories(){
+    var categories=[];
+    $('#categories').find('input:checked').each(function () {
+        if(!(/[a-z]/.test($(this).attr('name')))){
+            categories.push($(this).attr('name'));
         }
     });
-}
-
-function getUrl(text,categories,limit){
-    return 'http://snf-700467.vm.okeanos.grnet.gr:8983/solr/medira_test/select/?q=*'+text+'*%20AND('+getMergedCategories(categories)+')&rows='+limit+'&wt=json&json.wrf=?';
-}
-
-function getMergedCategories(categories){
-    var merged='categories.' + categories[0].split('=')[0]+':1';
-    var i;
-    for(i=1;i<categories.length;++i){
-        merged=merged + '%20OR%20categories.' + categories[i].split('=')[0]+':1';
-    }
-    return merged;
-}
-
-function getResultDiv(url,img,caption){
-    return '<div class=\"result\"><a href=\"'+url+'\"><img src=\"'+img+'\" title="Go to the article" alt=\"'+caption+'\"></a><p>'+caption+'</p></div>';
+    return categories;
 }
 
 function getValidated(allParams){
@@ -96,14 +60,9 @@ function getValidated(allParams){
     return validated;
 }
 
-function getMinimal(allParams){
-    var minimal=[];
-    var i;
-    for (i = 1; i < allParams.length; ++i) {
-        var param = allParams[i].split("=");
-        if (!(/[a-z]/.test(param[0]))) {
-            minimal.push(allParams[i])
-        }
+function handleCheckboxChange(){
+    if ($('#results').length){
+        $('#results').remove();
+        startQuery();
     }
-    return minimal;
 }
