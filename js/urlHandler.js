@@ -1,5 +1,5 @@
-function setGET(pages) {
-    if(!$('#inputText').val()){
+function setGET() {
+    if (!$('#inputText').val()) {
         return;
     }
     var params = "?q=" + encodeURIComponent($('#inputText').val());
@@ -9,12 +9,22 @@ function setGET(pages) {
     $(".custom-indeterminate").each(function () {
         params = params + "&" + $(this).attr('for') + "=0";
     });
-    params=params+'&pages='+pages;
-    window.history.pushState("object or string", $('#inputText').val(), params);
+    if (!location.origin)
+        location.origin = location.protocol + "//" + location.host;
+    window.location = location.protocol + '//' + location.host + location.pathname + params;
+
 }
 
-function getUrlPages(){
-    return parseInt(getUrlParameter('pages'),10);
+function getUrlPages() {
+    if (window.location.hash) {
+        return parseInt(window.location.hash.substring(1), 10);
+    } else {
+        return 1;
+    }
+}
+
+function changeHash(hash) {
+    window.location.replace("#" + hash);
 }
 
 function getUrlParameter(name) {
@@ -30,4 +40,4 @@ function getUrlParameter(name) {
             return sParameterName[1] === undefined ? true : sParameterName[1];
         }
     }
-};
+}

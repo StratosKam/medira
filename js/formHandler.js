@@ -1,7 +1,6 @@
 function handleEnter(event) {
     if (event.keyCode === 13) {
-        setGET(1);
-        startQuery();
+        setGET();
     }
     return false;
 }

@@ -5,10 +5,10 @@ function query(text,categories){
     $.getJSON(getSolrUrl(text,categories), function(result){
         var div=$('#results');
         if(result.response.docs.length==0){
-            if(getUrlParameter('pages')==1){
+            if(getUrlPages()==1){
                 div.append('<h1>No images found</h1>');
             }else{
-                setGET(0);
+                changeHash(0);
             }
         }else{
             for (var i = 0; i < result.response.docs.length; i++) {
