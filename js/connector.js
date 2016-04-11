@@ -1,6 +1,7 @@
 function startQuery(){
     changeHash(1);
-    $('#categories').attr("class","categories");
+    $('#input').addClass("withResults");
+    $('#categories').removeClass("center").addClass("left");
     var div=$('<div></div>').attr('id', 'results').attr('class','results');
     div.appendTo('body');
     query(getQueryInputURI(),getCategories());
