@@ -63,6 +63,6 @@ function handleCheckboxChange(){
     if ($('#results').length){
         $('#results').remove();
         setGET();
-        startQuery();
+        //startQuery();
     }
 }
