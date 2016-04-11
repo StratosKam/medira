@@ -62,6 +62,7 @@ function getValidated(allParams){
 function handleCheckboxChange(){
     if ($('#results').length){
         $('#results').remove();
+        setGET();
         startQuery();
     }
 }
