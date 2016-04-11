@@ -34,5 +34,22 @@ function getMergedCategories(categories){
 }
 
 function getResultDiv(url,img,caption){
-    return '<div class=\"result\"><a href=\"'+url+'\"><img src=\"'+img+'\" title="Go to the article" alt=\"'+caption+'\"></a><p>'+caption+'</p></div>';
+    var id=String(img).substring(String(img).lastIndexOf('/')+1,String(img).lastIndexOf('.'));
+    id='r'+String(id).replace(/-/g,'_');
+    return '<div id="'+id+'" class=\"result hide\"><img onclick="showInfo(\''+id+'\')" src=\"'+img+'\" title="Click for details." alt=\"'+caption+'\"><p>'+caption+' '+getLink(url)+'</p></div>';
+    //return '<div class=\"result hide\"><a href=\"'+url+'\"><img src=\"'+img+'\" title="Go to the article" alt=\"'+caption+'\"></a><p>'+caption+'</p></div>';
+}
+
+function getLink(url){
+    return '<a href=\"'+url+'\">Go to the article.</a>'
+}
+
+function showInfo(id){
+    var div=$('#'+id);
+    if(div.hasClass("hide")){
+        div.removeClass("hide");
+    }else{
+        div.addClass("hide");
+    }
+
 }

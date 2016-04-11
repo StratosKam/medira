@@ -90,7 +90,13 @@
     margin-left: 1px;
     margin-right: 1px;
 }
+
+.hide p{
+    display: none;
+}
+
 .result img{
     width:300px;
     height: 300px;
+    cursor: pointer;
 }
