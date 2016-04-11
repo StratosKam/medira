@@ -1,88 +1,96 @@
-.wrapper{
-    width: 500px;
-    margin: 0 auto;
-}
-
 .basicInput{
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px auto;
+    width: 500px;
+}
+.withResults{
+    padding-left: 355px;
 }
 
 .basicInput input{
+    font-size:1.1em;
     margin: 0 auto;
     width: 90%;
+    padding: 10px;
+    border: solid 1px #dcdcdc;
+    text-align: center;
+    transition: box-shadow 0.3s, border 0.3s;
+}
+
+.basicInput input:focus{
+    border: solid 1px #707070;
+    box-shadow: 0 0 5px 1px #969696;
 }
 
 .categories{
-    margin: 0 0 0 0;
+    min-width: 350px;
+    width:350px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.categories h1{
+    text-align: center;
+    color:gray;
+    font-size:1.3em;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.center{
+    margin: 0 auto;
+    font-size: 1em;
+}
+
+.center h1{
+    margin-bottom: 5px;
+    margin-top:0;
+}
+
+.left{
     float:left;
-    min-width: 360px;
-    width:360px;
-    /*font-size: 12px;*/
     height:100vh;
     overflow:auto;
     position: fixed;
-    top: 30px;
+    top: 0;
     bottom: 0;
+    font-size: 0.9em;
 }
 
+.left h1{
+    margin-top: 12px;
+    margin-bottom: 10px;
+}
 
-.buttons{
-    float: right;
+.generalCategory{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 1.05em;
+}
+
+.generalSubCategory{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 1em;
 }
 
 .results{
-    float:right;
-    padding-left: 370px;
-    /*width:70%;*/
-}
-
-.catResults{
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    margin: 0 auto;
-}
-
-.catResults h1{
-    font-size: 15px;
-    font-weight: bold;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.catResults h2{
-    font-size: 9px;
-    margin-top: 0;
-    padding-top: 0;
+    margin-left: 355px;
 }
 
 .result{
     text-align: center;
     display: inline-block;
     vertical-align: top;
-
-    margin: 5px 5px 25px 5px;
-    width: 600px;
+    margin: 5px 1px 25px 1px;
+    width: 300px;
 }
 
 .result p{
-    font-size:12px;
+    font-family: "Times New Roman", Times, serif;
+    text-align: left;
+    font-size:0.8em;
+    width: 300px;
+    margin-left: 1px;
+    margin-right: 1px;
 }
 .result img{
-    float: left;
     width:300px;
     height: 300px;
-}
-.toc{
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    margin: 0 auto;
-}
-.toc a{
-    text-align: center;
-    display: inline-block;
-    vertical-align: top;
-    margin-right: 10px;
 }

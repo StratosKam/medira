@@ -13,25 +13,21 @@
     <script src="js/urlHandler.js"></script>
 </head>
 <body onload="handleLoad()">
-<div class="wrapper">
-    <div id="form" class="container">
-        <div class="basicInput">
-            <label for="inputText"></label><input type="text" name="inputText" id="inputText"
-                                                  placeholder="Search - Press enter to confirm."
-                                                  onkeypress="handleEnter(event)">
-        </div>
-    </div>
-
+<div id="input" class="basicInput">
+    <label for="inputText"></label><input type="text" name="inputText" id="inputText"
+                                          placeholder="Search for images"
+                                          onkeypress="handleEnter(event)">
 </div>
-<div id="categories" class="wrapper">
+<div id="categories" class="categories center">
+    <h1>Categories</h1>
     <ul class="treeview">
         <li>
             <input type="checkbox" name="Dxxx" id="Dxxx">
-            <label for="Dxxx" class="custom-unchecked">[Dxxx] Diagnostic images</label>
+            <label for="Dxxx" class="custom-unchecked generalCategory">[Dxxx] Diagnostic images</label>
             <ul>
                 <li>
                     <input type="checkbox" name="DRxx" id="DRxx">
-                    <label for="DRxx" class="custom-unchecked">[DRxx] Radiology</label>
+                    <label for="DRxx" class="custom-unchecked generalSubCategory">[DRxx] Radiology</label>
                     <ul>
                         <li>
                             <input type="checkbox" name="DRUS" id="DRUS">
@@ -65,7 +61,8 @@
                 </li>
                 <li>
                     <input type="checkbox" name="DVxx" id="DVxx">
-                    <label for="DVxx" class="custom-unchecked">[DVxx] Visible light photography</label>
+                    <label for="DVxx" class="custom-unchecked generalSubCategory">[DVxx] Visible light
+                        photography</label>
                     <ul>
                         <li>
                             <input type="checkbox" name="DVDM" id="DVDM">
@@ -83,7 +80,7 @@
                 </li>
                 <li>
                     <input type="checkbox" name="DSxx" id="DSxx">
-                    <label for="DSxx" class="custom-unchecked">[DSxx] Printed signals, waves</label>
+                    <label for="DSxx" class="custom-unchecked generalSubCategory">[DSxx] Printed signals, waves</label>
                     <ul>
                         <li>
                             <input type="checkbox" name="DSEE" id="DSEE">
@@ -101,7 +98,7 @@
                 </li>
                 <li>
                     <input type="checkbox" name="DMxx" id="DMxx">
-                    <label for="DMxx" class="custom-unchecked">[DMxx] Microscopy</label>
+                    <label for="DMxx" class="custom-unchecked generalSubCategory">[DMxx] Microscopy</label>
                     <ul>
                         <li>
                             <input type="checkbox" name="DMLI" id="DMLI">
@@ -129,7 +126,7 @@
         </li>
         <li class="last">
             <input type="checkbox" name="Gxxx" id="Gxxx">
-            <label for="Gxxx" class="custom-unchecked">[Gxxx] Generic biomedical illustrations</label>
+            <label for="Gxxx" class="custom-unchecked generalCategory">[Gxxx] Generic biomedical illustrations</label>
             <ul>
                 <li>
                     <input type="checkbox" name="GTAB" id="GTAB">
