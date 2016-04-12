@@ -19,3 +19,9 @@ $(window).scroll(function() {
         addPage();
     }
 });
+
+$('html').on ('mousewheel', function (e) {
+    if (e.originalEvent.wheelDelta && $(document).height()==$(window).height() + $(window).scrollTop()) {
+            addPage();
+    }
+});
